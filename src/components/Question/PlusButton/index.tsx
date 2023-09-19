@@ -1,7 +1,13 @@
-export default function PlusButton() {
+interface Props {
+    onClick: () => void
+}
+
+export default function PlusButton({onClick}: Props) {
     return (
-        <div>
-            <button>+</button>
-        </div>
+        <button 
+            onClick={onClick}
+        >
+            +
+        </button>
     )
 }

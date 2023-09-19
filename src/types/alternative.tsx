@@ -1,5 +1,4 @@
 export interface Ialternative {
     name: string,
-    type: string,
-    selected: boolean
+    selected: boolean | undefined
 }

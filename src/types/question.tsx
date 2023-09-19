@@ -4,5 +4,5 @@ export interface Iquestion {
     statement: string,
     type: string,
     alternatives: Ialternative[],
-    
+    // id: string
 }

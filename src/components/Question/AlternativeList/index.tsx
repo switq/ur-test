@@ -1,19 +1,32 @@
+import { clickOptions } from "@testing-library/user-event/dist/click";
 import { Ialternative } from "../../../types/alternative";
 import { Iquestion } from "../../../types/question";
 
 interface Props {
-    alternatives: Ialternative[],
+    question: Iquestion,
+    setQuestion: React.Dispatch<React.SetStateAction<Iquestion>>,
     type: string
     
 }
 
-export default function AlternativeList({alternatives, type}: Props) {
+export default function AlternativeList({question, setQuestion, type}: Props) {
+    function selectAlternative(e: any, id: string) {
+        e.preventDefault();
+        console.log(e.target)
+        e.target.removeAttribute('readonly');
+        console.log(e.target)
+    }
+    
     return (
         <ul>
-            {alternatives.map((alternative, index) => (
+            {question.alternatives.map((alternative, index) => (
                 <li key={index}>
-                    <input readOnly type={type} checked={alternative.selected}/>
-                    <label htmlFor="">{alternative.name}</label>
+                    <input type={type} readOnly/>
+                    <input
+                        type="text" 
+                        value={alternative.name} 
+                        onClick={e => selectAlternative(e, alternative.id)}
+                    />
                 </li>
             ))}
         </ul>

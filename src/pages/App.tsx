@@ -1,32 +1,20 @@
 import React, { useState } from 'react';
 import './App.css';
-import Question from '../components/Question';
-import { Iquestion } from '../types/question';
-import { Itest } from '../types/test';
+import Alternative from '../components/Alternative';
 import { v4 as uuid4 } from 'uuid';
+import { Ialternative } from '../types/alternative';
 
 function App() {
-  const [question, setQuestion] = useState<Iquestion>({
-    statement: 'O que é o que é',
-    type: 'radio',
-    alternatives: [
-      {
-        name: '1',
-        selected: false,
-        id: uuid4()
-      },
-      {
-        name: '2',
-        selected: false,
-        id: uuid4()
-      }
-    ]
-  });
+  const [alternativa, setAlternativa] = useState<Ialternative>({
+    name: 'oomg',
+    selected: false,
+    id: uuid4()
+  })
 
    
   return (
     <div className="App">
-       <Question question={question} setQuestion={setQuestion}/>
+      <Alternative alternativa={alternativa} setAlternativa={setAlternativa}></Alternative>
     </div>
   );
 }

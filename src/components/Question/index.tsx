@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Alternative from "./AlternativeList/Alternative";
+import Alternative from "../Alternative";
 import PlusButton from "./AlternativeList/PlusButton";
 import { Iquestion } from "../../types/question";
 import { Itest } from "../../types/test";

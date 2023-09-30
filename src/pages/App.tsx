@@ -4,6 +4,7 @@ import Alternative from '../components/Alternative';
 import { v4 as uuid4 } from 'uuid';
 import { Ialternative } from '../types/alternative';
 import PlusButton from '../components/PlusButton';
+import {DragDropContext, Droppable, Draggable, DropResult} from "react-beautiful-dnd";
 
 function App() {
   const [alternativas, setAlternativas] = useState<Ialternative[]>([
@@ -70,19 +71,54 @@ function App() {
     ])
   }
    
+  const handleDragAndDrop = (results: DropResult) => {
+
+  }
+
   return (
     <div className="App">
       <h2>Questão</h2>
-      {alternativas.map((alternativa) => (
-        <Alternative 
-          key={alternativa.id}
-          alternativa={alternativa} 
-          atualizaAlternativa={atualizaAlternativa}
-          atualizaMarcado={atualizaMarcado}
-          deletaAlternativa={deletaAlternativa}
-        />
-      ))}  
-        <PlusButton onClick={addAlternativa} />
+      <DragDropContext onDragEnd={(results) => {
+        handleDragAndDrop(results);
+      }}>
+        <Droppable droppableId='alternatives'>
+          {(provided => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {alternativas.map((alternativa, index) => (
+                <Draggable 
+                  key={alternativa.id} 
+                  draggableId={alternativa.id} 
+                  index={index}
+                >
+                  {(provided) => (
+                    <div 
+                      {...provided.dragHandleProps} 
+                      {...provided.draggableProps}
+                      ref={provided.innerRef}
+                    >
+                      <Alternative 
+                        key={alternativa.id}
+                        alternativa={alternativa} 
+                        atualizaAlternativa={atualizaAlternativa}
+                        atualizaMarcado={atualizaMarcado}
+                        deletaAlternativa={deletaAlternativa}
+                      />
+                    </div>
+                  )}
+                </Draggable>
+                // <Alternative 
+                //   key={alternativa.id}
+                //   alternativa={alternativa} 
+                //   atualizaAlternativa={atualizaAlternativa}
+                //   atualizaMarcado={atualizaMarcado}
+                //   deletaAlternativa={deletaAlternativa}
+                // />
+              ))}  
+            </div>
+          ))}
+        </Droppable>
+      </DragDropContext>
+      <PlusButton onClick={addAlternativa}></PlusButton>
     </div>
   );
 }

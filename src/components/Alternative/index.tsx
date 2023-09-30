@@ -1,6 +1,6 @@
 import React from "react";
 import { Ialternative } from "../../types/alternative";
-
+import './alternative.css'
 interface props {
     alternativa: Ialternative,
     atualizaAlternativa: (id: string, novoNome: string) => void
@@ -10,7 +10,7 @@ interface props {
 
 export default function Alternative({alternativa, atualizaAlternativa, atualizaMarcado, deletaAlternativa}: props) {
     return (
-        <div>
+        <div className="wrapper">
             <input 
                 type="radio"
                 checked={alternativa.selected}

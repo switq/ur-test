@@ -72,7 +72,26 @@ function App() {
   }
    
   const handleDragAndDrop = (results: DropResult) => {
+    const {source, destination, type} = results;
+    
+    if ( !destination ) return;
+    if (
+      destination.droppableId === source.droppableId && 
+      destination.index === source.index
+      ) 
+        return;
+    
+    if ( type === 'group') {
+      const reordedAlternativas = [...alternativas];
 
+      const sourceIndex = source.index;
+      const destinationIndex = destination.index
+
+      const [removedAlternative] = reordedAlternativas.splice(sourceIndex, 1);
+      reordedAlternativas.splice(destinationIndex, 0, removedAlternative);
+
+      return setAlternativas(reordedAlternativas);
+    }
   }
 
   return (
@@ -106,13 +125,6 @@ function App() {
                     </div>
                   )}
                 </Draggable>
-                // <Alternative 
-                //   key={alternativa.id}
-                //   alternativa={alternativa} 
-                //   atualizaAlternativa={atualizaAlternativa}
-                //   atualizaMarcado={atualizaMarcado}
-                //   deletaAlternativa={deletaAlternativa}
-                // />
               ))}  
             </div>
           ))}

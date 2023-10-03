@@ -60,7 +60,7 @@ function App() {
     })
   }
 
-  function addAlternativa() {
+  function addAlternativa(): void {
     setAlternativas(prevAlternativas => [
       ...prevAlternativas,
       {
@@ -78,10 +78,11 @@ function App() {
     if (
       destination.droppableId === source.droppableId && 
       destination.index === source.index
-      ) 
-        return;
+    ) 
+      return;
     
-    if ( type === 'group') {
+    console.log(type)
+    if ( type === 'group' || type === 'DEFAULT') {
       const reordedAlternativas = [...alternativas];
 
       const sourceIndex = source.index;
@@ -101,7 +102,7 @@ function App() {
         handleDragAndDrop(results);
       }}>
         <Droppable droppableId='alternatives'>
-          {(provided => (
+          {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
               {alternativas.map((alternativa, index) => (
                 <Draggable 
@@ -126,13 +127,16 @@ function App() {
                   )}
                 </Draggable>
               ))}  
+              {/* para não atualizar a Droppable area} */}
+              {provided.placeholder} 
             </div>
-          ))}
+          )}
         </Droppable>
       </DragDropContext>
       <PlusButton onClick={addAlternativa}></PlusButton>
     </div>
   );
 }
+
 
 export default App;

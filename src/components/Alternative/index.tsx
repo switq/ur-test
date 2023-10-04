@@ -2,28 +2,22 @@ import React from "react";
 import { Ialternative } from "../../types/alternative";
 import './alternative.css'
 interface props {
-    alternativa: Ialternative,
-    atualizaAlternativa: (id: string, novoNome: string) => void
-    atualizaMarcado: (id: string) => void
-    deletaAlternativa: (id: string) => void
+    alternative: Ialternative,
 }
 
-export default function Alternative({alternativa, atualizaAlternativa, atualizaMarcado, deletaAlternativa}: props) {
+function Alternative({alternative}: props) {
     return (
         <div className="wrapper">
             <input 
                 type="radio"
-                checked={alternativa.selected}
-                onChange={e => atualizaMarcado(alternativa.id)}
+                checked={alternative.selected}
             />
             <input 
                 type="text" 
-                value={alternativa.name}
-                onChange={e => {
-                    atualizaAlternativa(alternativa.id, e.target.value)
-                    if ( e.target.value === '' ) deletaAlternativa(alternativa.id)
-                }}
+                value={alternative.name}
             />
         </div>
     )
 }
+
+export default Alternative;

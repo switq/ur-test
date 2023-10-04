@@ -1,45 +1,23 @@
-import React, { useState } from "react";
-import Alternative from "../Alternative";
-import PlusButton from "../PlusButton";
-import { Iquestion } from "../../types/question";
-import { Itest } from "../../types/test";
-import AlternativeList from "./AlternativeList";
-import { v4 as uuidv4 } from 'uuid';
+import React, { useState } from 'react';
+import { Iquestion } from '../../types/question';
+import AlternativeList from '../AlternativeList';
 
-interface Props {
+interface props {
     question: Iquestion,
-    setQuestion: React.Dispatch<React.SetStateAction<Iquestion>>
+    setQuestions: React.Dispatch<React.SetStateAction<Iquestion[]>> 
 }
 
-export default function Question({question, setQuestion}: Props) {
-    function addAlternative() {
-        setQuestion(prevQuestion => {
-            const newAlternatives = [
-                ...prevQuestion.alternatives, 
-                {
-                    name: 'Nova alternativa',
-                    selected: false,
-                    id: uuidv4()
-                }
-            ]
-            return ({
-                ...prevQuestion,
-                alternatives: newAlternatives
-            })
-        })
-    }
-
+function Question({question, setQuestions}: props) {
     return (
-        <div>
-            <h3>Pergunta</h3>
-            <div>
-                <AlternativeList 
-                    question={question}
-                    setQuestion={setQuestion}
-                    type={question.type}
-                />
-            </div>
-            <PlusButton onClick={addAlternative}/>
-        </div>
+       <div>
+            <h3>{question.enunciation}</h3>
+            <AlternativeList
+                alternatives={question.alternatives}
+                questionId={question.id}
+                setQuestions={setQuestions}
+            />
+       </div> 
     )
-} 
+}
+
+export default Question;

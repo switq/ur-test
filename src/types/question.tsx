@@ -1,8 +1,9 @@
 import { Ialternative } from "./alternative";
 
 export interface Iquestion {
-    statement: string,
+    enunciation: string,
     type: string,
+    id: string,
     alternatives: Ialternative[],
-    // id: string
+    text: string | null,
 }

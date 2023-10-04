@@ -50,8 +50,8 @@ function QuestionList({questions, setQuestions}: props) {
             ? [...questions[questionDestinationIndex].contentQuestion]
             : newSourceAlternatives;
         
-        const [deletedAlternative] = newSourceAlternatives.splice(alternativeSourceIndex, 1);
-        deletedAlternative.checked = false;
+        const [deletedAlternative] =  newSourceAlternatives.splice(alternativeSourceIndex, 1);
+        deletedAlternative.checked =  false;
         newDestinationAlternatives.splice(alternativeDestinationIndex, 0, deletedAlternative);
 
         const newQuestions = [...questions];
@@ -72,7 +72,7 @@ function QuestionList({questions, setQuestions}: props) {
         setQuestions(prevQuestions => {
             const newQuestions = [...prevQuestions];
             newQuestions.push({
-                enunciation: 'Q',
+                enunciation: '',
                 type: 'radio',
                 id: uuid4(),
                 text: '',
@@ -114,9 +114,10 @@ function QuestionList({questions, setQuestions}: props) {
                     )}
                 </Droppable>
             </DragDropContext> 
-        <PlusButton
+        <button
             onClick={addQuestion}
-        />
+        >
+            Add Question</button>
         </div>
         
     )

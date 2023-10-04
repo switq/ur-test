@@ -10,11 +10,12 @@ import { v4 as uuid4 } from 'uuid';
 
 interface Props {
     alternatives: Ialternative[],
+    questionType: string,
     questionId: string
     setQuestions: React.Dispatch<React.SetStateAction<Iquestion[]>> 
 }
 
-function AlternativeList({alternatives, questionId, setQuestions}: Props) {
+function AlternativeList({alternatives, questionType, questionId, setQuestions}: Props) {
 
     function addAlternative(): void {
         setQuestions(prevQuestions => {
@@ -49,6 +50,7 @@ function AlternativeList({alternatives, questionId, setQuestions}: Props) {
                                         >
                                             <Alternative
                                                 alternative={alternative}
+                                                questionType={questionType}
                                                 questionId={questionId}
                                                 setQuestions={setQuestions}
                                             />

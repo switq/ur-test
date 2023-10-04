@@ -2,16 +2,16 @@ import React from "react";
 import { Ialternative } from "../../types/alternative";
 import './alternative.css'
 import { Iquestion } from "../../types/question";
-import { strictEqual } from "assert";
 import { findQuestionAlternativeIndex } from "../../utils/locateFunctions";
 
 interface props {
     alternative: Ialternative,
+    questionType: string,
     questionId: string,
     setQuestions: React.Dispatch<React.SetStateAction<Iquestion[]>>
 }
 
-function Alternative({alternative, questionId, setQuestions}: props) {
+function Alternative({alternative, questionType, questionId, setQuestions}: props) {
 
     function editAlternative(alternativeId: string, questionId: string, newAlternativeName: string) {
         setQuestions(prevQuestions => {
@@ -33,14 +33,19 @@ function Alternative({alternative, questionId, setQuestions}: props) {
         })
     }
 
-    function checkAlternative(alternativeId: string, questionId: string) {
+    function checkAlternative(alternativeId: string, questionType: string, questionId: string) {
         setQuestions(prevQuestions => {
             const newQuestions = [...prevQuestions];
             const {alternativeIndex, questionIndex} = findQuestionAlternativeIndex(alternativeId, questionId, newQuestions);
-            newQuestions[questionIndex].contentQuestion.forEach(alternative => {
-                alternative.checked = false;
-            });
-            newQuestions[questionIndex].contentQuestion[alternativeIndex].checked = true;
+
+            if (questionType === 'radio') {
+                newQuestions[questionIndex].contentQuestion.forEach(alternative => {
+                    alternative.checked = false;
+                });
+                newQuestions[questionIndex].contentQuestion[alternativeIndex].checked = true;
+            } else if (questionType === 'checkbox') {
+                newQuestions[questionIndex].contentQuestion[alternativeIndex].checked = !newQuestions[questionIndex].contentQuestion[alternativeIndex].checked
+            }
             
             return newQuestions;
         })
@@ -49,9 +54,9 @@ function Alternative({alternative, questionId, setQuestions}: props) {
     return (
         <div className="wrapper">
             <input 
-                type="radio"
+                type={questionType}
                 checked={alternative.checked}
-                onClick={e => checkAlternative(alternative.id, questionId)}
+                onClick={e => checkAlternative(alternative.id, questionType, questionId)}
                 readOnly
             />
             <input 

@@ -29,6 +29,16 @@ function Question({question, setQuestions}: props) {
             return newQuestions;
         })
     }
+
+    function editType(questionId: string, newType: string) {
+        setQuestions(prevQuestions => {
+            const newQuestions = [...prevQuestions];
+            const questionIndex = findQuestion(questionId, newQuestions);
+            newQuestions[questionIndex].type = newType;
+
+            return newQuestions;
+        })
+    }
     
     return (
        <div>
@@ -37,8 +47,17 @@ function Question({question, setQuestions}: props) {
                 value={question.enunciation}
                 onChange={e => editEnunciation(question.id, e.target.value)}
             />
+
+            <select 
+                onChange={e => editType(question.id, e.target.value)}
+            >
+                <option value="radio">Múltipla escolha</option>
+                <option value="checkbox">Caixa de seleção</option>
+            </select>
+
             <AlternativeList
                 alternatives={question.contentQuestion}
+                questionType={question.type}
                 questionId={question.id}
                 setQuestions={setQuestions}
             />

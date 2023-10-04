@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { DragDropContext, Draggable, DropResult, Droppable } from 'react-beautiful-dnd';
 import { Iquestion } from '../../types/question';
 import Question from '../Question';
-import { Ialternative } from '../../types/alternative';
+import { v4 as uuid4 } from 'uuid';
+import PlusButton from '../PlusButton';
 
 interface props {
     questions: Iquestion[],
@@ -67,36 +68,57 @@ function QuestionList({questions, setQuestions}: props) {
         setQuestions(newQuestions);
     }
 
+    function addQuestion() {
+        setQuestions(prevQuestions => {
+            const newQuestions = [...prevQuestions];
+            newQuestions.push({
+                enunciation: 'Q',
+                type: 'radio',
+                id: uuid4(),
+                text: '',
+                contentQuestion: [],
+            })
+
+            return newQuestions;
+        })
+    }
+
     return (
-        <DragDropContext onDragEnd={handleDragAndDrop}>
-            <Droppable droppableId='ROOT' type='group'>
-                {(provided) => (
-                    <div {...provided.droppableProps} ref={provided.innerRef}>
-                        {questions.map((question, index) => (
-                            <Draggable
-                                draggableId={question.id}
-                                index={index}
-                                key={question.id}
-                            >
-                                {(provided) => (
-                                    <div
-                                        {...provided.dragHandleProps}
-                                        {...provided.draggableProps}
-                                        ref={provided.innerRef}
-                                    >
-                                        <Question
-                                            question={question}
-                                            setQuestions={setQuestions}
-                                        />
-                                    </div>
-                                )}
-                            </Draggable>
-                        ))}
-                        {provided.placeholder}
-                    </div>
-                )}
-            </Droppable>
-        </DragDropContext> 
+        <div>
+            <DragDropContext onDragEnd={handleDragAndDrop}>
+                <Droppable droppableId='ROOT' type='group'>
+                    {(provided) => (
+                        <div {...provided.droppableProps} ref={provided.innerRef}>
+                            {questions.map((question, index) => (
+                                <Draggable
+                                    draggableId={question.id}
+                                    index={index}
+                                    key={question.id}
+                                >
+                                    {(provided) => (
+                                        <div
+                                            {...provided.dragHandleProps}
+                                            {...provided.draggableProps}
+                                            ref={provided.innerRef}
+                                        >
+                                            <Question
+                                                question={question}
+                                                setQuestions={setQuestions}
+                                            />
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext> 
+        <PlusButton
+            onClick={addQuestion}
+        />
+        </div>
+        
     )
 }
 

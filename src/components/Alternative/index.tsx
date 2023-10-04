@@ -4,6 +4,7 @@ import './alternative.css'
 import { Iquestion } from "../../types/question";
 import { strictEqual } from "assert";
 import { findQuestionAlternativeIndex } from "../../utils/locateFunctions";
+
 interface props {
     alternative: Ialternative,
     questionId: string,

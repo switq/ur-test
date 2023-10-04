@@ -16,12 +16,12 @@ function App() {
         {
           name: 'Alternativa11',
           id: uuid4(),
-          selected: false,
+          checked: false,
         },
         {
           name: 'Alternativa12',
           id: uuid4(),
-          selected: false,
+          checked: false,
         },
       ],
       text: ''
@@ -34,7 +34,7 @@ function App() {
         {
           name: 'Alternativa21',
           id: uuid4(),
-          selected: false,
+          checked: false,
         }
       ],
       text: ''

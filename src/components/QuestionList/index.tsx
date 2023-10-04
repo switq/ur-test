@@ -10,6 +10,7 @@ interface props {
 }
 
 function QuestionList({questions, setQuestions}: props) {
+
     function handleDragAndDrop(result: DropResult) {
         const { source, destination, type } = result;
 
@@ -42,24 +43,25 @@ function QuestionList({questions, setQuestions}: props) {
             (question) => question.id === destination.droppableId
         );
 
-        const newSourceAlternatives = [...questions[questionSourceIndex].alternatives];
+        const newSourceAlternatives = [...questions[questionSourceIndex].contentQuestion];
         const newDestinationAlternatives = 
             source.droppableId !== destination.droppableId
-            ? [...questions[questionDestinationIndex].alternatives]
+            ? [...questions[questionDestinationIndex].contentQuestion]
             : newSourceAlternatives;
         
         const [deletedAlternative] = newSourceAlternatives.splice(alternativeSourceIndex, 1);
+        deletedAlternative.checked = false;
         newDestinationAlternatives.splice(alternativeDestinationIndex, 0, deletedAlternative);
 
         const newQuestions = [...questions];
 
         newQuestions[questionSourceIndex] = {
             ...questions[questionSourceIndex],
-            alternatives: newSourceAlternatives,
+            contentQuestion: newSourceAlternatives,
         };
         newQuestions[questionDestinationIndex] = {
             ...questions[questionDestinationIndex],
-            alternatives: newDestinationAlternatives,
+            contentQuestion: newDestinationAlternatives,
         };
 
         setQuestions(newQuestions);

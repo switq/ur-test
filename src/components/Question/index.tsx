@@ -12,7 +12,7 @@ function Question({question, setQuestions}: props) {
        <div>
             <h3>{question.enunciation}</h3>
             <AlternativeList
-                alternatives={question.alternatives}
+                alternatives={question.contentQuestion}
                 questionId={question.id}
                 setQuestions={setQuestions}
             />

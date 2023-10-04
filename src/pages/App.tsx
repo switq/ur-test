@@ -12,7 +12,7 @@ function App() {
       enunciation: 'Questão 1',
       type: 'radio',
       id: uuid4(),
-      alternatives: [
+      contentQuestion: [
         {
           name: 'Alternativa11',
           id: uuid4(),
@@ -30,7 +30,7 @@ function App() {
       enunciation: 'Questão 2',
       type: 'radio',
       id: uuid4(),
-      alternatives: [
+      contentQuestion: [
         {
           name: 'Alternativa21',
           id: uuid4(),

@@ -15,12 +15,12 @@ interface Props {
 }
 
 function AlternativeList({alternatives, questionId, setQuestions}: Props) {
-    
+
     function addAlternative(): void {
         setQuestions(prevQuestions => {
             const newQuestions = [...prevQuestions];
             const questionIndex = findQuestion(questionId, newQuestions);
-            newQuestions[questionIndex].alternatives.push({
+            newQuestions[questionIndex].contentQuestion.push({
                 name: '',
                 id: uuid4(),
                 checked: false,

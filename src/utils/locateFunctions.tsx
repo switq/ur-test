@@ -2,7 +2,7 @@ import { Iquestion } from "../types/question";
 
 export function findQuestionAlternativeIndex(alternativeId: string, questionId: string, questions: Iquestion[]) {
     const questionIndex = questions.findIndex(question => question.id === questionId);
-    const alternativeIndex = questions[questionIndex].alternatives.findIndex((alternative) => alternative.id === alternativeId);
+    const alternativeIndex = questions[questionIndex].contentQuestion.findIndex((alternative) => alternative.id === alternativeId);
 
     return { alternativeIndex: alternativeIndex, questionIndex: questionIndex }
 }

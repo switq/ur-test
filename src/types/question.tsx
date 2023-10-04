@@ -4,6 +4,6 @@ export interface Iquestion {
     enunciation: string,
     type: string,
     id: string,
-    alternatives: Ialternative[],
+    contentQuestion: Ialternative[],
     text: string | null,
 }

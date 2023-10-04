@@ -16,7 +16,7 @@ function Alternative({alternative, questionId, setQuestions}: props) {
         setQuestions(prevQuestions => {
             const newQuestions = [...prevQuestions];
             const {alternativeIndex, questionIndex} = findQuestionAlternativeIndex(alternativeId, questionId, newQuestions);
-            newQuestions[questionIndex].alternatives[alternativeIndex].name = newAlternativeName;
+            newQuestions[questionIndex].contentQuestion[alternativeIndex].name = newAlternativeName;
             
             return newQuestions;
         });
@@ -26,14 +26,23 @@ function Alternative({alternative, questionId, setQuestions}: props) {
         setQuestions(prevQuestions => {
             const newQuestions = [...prevQuestions];
             const {alternativeIndex, questionIndex} = findQuestionAlternativeIndex(alternativeId, questionId, newQuestions);
-            newQuestions[questionIndex].alternatives.splice(alternativeIndex, 1);
+            newQuestions[questionIndex].contentQuestion.splice(alternativeIndex, 1);
 
             return newQuestions;
         })
     }
 
     function checkAlternative(alternativeId: string, questionId: string) {
-        
+        setQuestions(prevQuestions => {
+            const newQuestions = [...prevQuestions];
+            const {alternativeIndex, questionIndex} = findQuestionAlternativeIndex(alternativeId, questionId, newQuestions);
+            newQuestions[questionIndex].contentQuestion.forEach(alternative => {
+                alternative.checked = false;
+            });
+            newQuestions[questionIndex].contentQuestion[alternativeIndex].checked = true;
+            
+            return newQuestions;
+        })
     }
     
     return (
@@ -41,6 +50,8 @@ function Alternative({alternative, questionId, setQuestions}: props) {
             <input 
                 type="radio"
                 checked={alternative.checked}
+                onClick={e => checkAlternative(alternative.id, questionId)}
+                readOnly
             />
             <input 
                 type="text" 

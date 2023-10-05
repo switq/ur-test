@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Iquestion } from '../../types/question';
 import { Ialternative } from '../../types/alternative';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
-import Alternative from '../Alternative/index';
+import Alternative from './../Alternative';
 import PlusButton from '../PlusButton';
 import { findQuestion } from '../common/utils/locateFunctions';
 import { v4 as uuid4 } from 'uuid';
+import style from './AlternativeList.module.scss';
 
 
 interface Props {
@@ -38,7 +39,7 @@ function AlternativeList({alternatives, questionType, questionId, setQuestions}:
                         <div 
                             {...provided.droppableProps} 
                             ref={provided.innerRef}
-                            
+                            className={style.alternativeList}
                         >
                             {alternatives.map((alternative, index) => (
                                 <Draggable 

@@ -15,6 +15,7 @@ function Alternative({alternative, questionType, questionId, setQuestions}: prop
 
     return (
         <div className={style.alternative}>
+            <span className={style.drag}></span>
             <input 
                 type={questionType}
                 checked={alternative.checked}

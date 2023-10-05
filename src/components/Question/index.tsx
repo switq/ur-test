@@ -45,21 +45,21 @@ function Question({question, setQuestions}: props) {
     
     return (
        <div className={style.question}>
-            <input 
-                type='text' 
-                value={question.enunciation}
-                onChange={e => editEnunciation(question.id, e.target.value)}
-            />
+            <div>
+                <input 
+                    type='text' 
+                    value={question.enunciation}
+                    onChange={e => editEnunciation(question.id, e.target.value)}
+                />
 
-            <select 
-                onChange={e => editType(question.id, e.target.value)}
-            >
-                <option value="radio">Múltipla escolha</option>
-                <option value="checkbox">Caixa de seleção</option>
-            </select>
-            {
-                
-            }
+                <select 
+                    onChange={e => editType(question.id, e.target.value)}
+                >
+                    <option value="radio">Múltipla escolha</option>
+                    <option value="checkbox">Caixa de seleção</option>
+                </select>
+            </div>
+
             <AlternativeList
                 alternatives={question.contentQuestion}
                 questionType={question.type}

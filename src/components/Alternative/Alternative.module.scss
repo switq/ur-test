@@ -2,7 +2,7 @@
 
 .alternative {
     display: flex;
-    justify-content: space-between;
+    gap: 0.2em;    
 }
 
 .textBox {
@@ -19,7 +19,14 @@
 }
 
 .textBox:focus {
-    
     outline: none;
+}
 
+.drag {
+    width: 16px;
+    height: auto;
+    background: url(../../assets/img/drag-handle-svgrepo-com.svg) no-repeat ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

@@ -1,4 +1,4 @@
-import { Iquestion } from "../types/question";
+import { Iquestion } from "../../../types/question";
 
 export function findQuestionAlternativeIndex(alternativeId: string, questionId: string, questions: Iquestion[]) {
     const questionIndex = questions.findIndex(question => question.id === questionId);

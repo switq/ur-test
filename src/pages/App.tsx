@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './App.css';
 import { Iquestion } from '../types/question';
 import { v4 as uuid4 } from 'uuid';
 import QuestionList from '../components/QuestionList';
+import style from './App.module.scss';
 
 
 
@@ -42,7 +42,7 @@ function App() {
   ])
 
   return (
-    <div>
+    <div className={style.appStyle}>
       <QuestionList
         questions={questions}
         setQuestions={setQuestions}

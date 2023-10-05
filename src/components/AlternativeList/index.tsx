@@ -4,7 +4,7 @@ import { Ialternative } from '../../types/alternative';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import Alternative from '../Alternative/index';
 import PlusButton from '../PlusButton';
-import { findQuestion } from '../../utils/locateFunctions';
+import { findQuestion } from '../common/utils/locateFunctions';
 import { v4 as uuid4 } from 'uuid';
 
 
@@ -35,7 +35,11 @@ function AlternativeList({alternatives, questionType, questionId, setQuestions}:
         <div>
             <Droppable droppableId={questionId}>
                     {(provided) => (
-                        <div {...provided.droppableProps} ref={provided.innerRef}>
+                        <div 
+                            {...provided.droppableProps} 
+                            ref={provided.innerRef}
+                            
+                        >
                             {alternatives.map((alternative, index) => (
                                 <Draggable 
                                     draggableId={alternative.id}
@@ -47,6 +51,7 @@ function AlternativeList({alternatives, questionType, questionId, setQuestions}:
                                             {...provided.dragHandleProps}
                                             {...provided.draggableProps}
                                             ref={provided.innerRef}
+                                            key={alternative.id}
                                         >
                                             <Alternative
                                                 alternative={alternative}
@@ -60,7 +65,7 @@ function AlternativeList({alternatives, questionType, questionId, setQuestions}:
                                 </Draggable>
                                 
                             ))}
-                        {provided.placeholder}
+                            {provided.placeholder}
                         </div>
                     )}
             </Droppable> 

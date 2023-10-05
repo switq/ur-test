@@ -1,0 +1,14 @@
+@import url(../common/colors/palete.scss);
+
+.question {
+
+    width: 100%;
+    background-color: var(--gray001);
+    padding: 0.5em;
+    border-radius: 0.2em;
+    width: 24em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    
+}

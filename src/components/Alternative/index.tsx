@@ -1,8 +1,8 @@
 import React from "react";
 import { Ialternative } from "../../types/alternative";
-import './alternative.css'
+import style from './Alternative.module.scss'
 import { Iquestion } from "../../types/question";
-import { findQuestionAlternativeIndex } from "../../utils/locateFunctions";
+import { findQuestionAlternativeIndex } from "../common/utils/locateFunctions";
 
 interface props {
     alternative: Ialternative,
@@ -13,6 +13,33 @@ interface props {
 
 function Alternative({alternative, questionType, questionId, setQuestions}: props) {
 
+    return (
+        <div className={style.alternative}>
+            <input 
+                type={questionType}
+                checked={alternative.checked}
+                onClick={e => checkAlternative(alternative.id, questionType, questionId)}
+                readOnly
+            />
+            <textarea 
+                value={alternative.name}
+                onChange={e => {
+                    editAlternative(alternative.id, questionId, e.target.value);
+                    textAreaDynamicHeigth(e.target)
+                }}
+                wrap="soft"
+                placeholder="Adicionar opção"
+                className={style.textBox}
+            />
+            <button onClick={e => deleteAlternative(alternative.id, questionId)}>X</button>
+        </div>
+    )
+
+    function textAreaDynamicHeigth(element: HTMLTextAreaElement) {
+        element.style.height = "16px";
+        element.style.height = element.scrollHeight + "px";
+    }
+    
     function editAlternative(alternativeId: string, questionId: string, newAlternativeName: string) {
         setQuestions(prevQuestions => {
             const newQuestions = [...prevQuestions];
@@ -51,22 +78,6 @@ function Alternative({alternative, questionType, questionId, setQuestions}: prop
         })
     }
     
-    return (
-        <div className="wrapper">
-            <input 
-                type={questionType}
-                checked={alternative.checked}
-                onClick={e => checkAlternative(alternative.id, questionType, questionId)}
-                readOnly
-            />
-            <input 
-                type="text" 
-                value={alternative.name}
-                onChange={e => editAlternative(alternative.id, questionId, e.target.value)}
-            />
-            <button onClick={e => deleteAlternative(alternative.id, questionId)}>X</button>
-        </div>
-    )
 }
 
 export default Alternative;

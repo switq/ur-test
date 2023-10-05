@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Iquestion } from '../../types/question';
 import AlternativeList from '../AlternativeList';
-import { findQuestion } from '../../utils/locateFunctions';
+import { findQuestion } from '../common/utils/locateFunctions';
+import style from './Question.module.scss';
+
 
 interface props {
     question: Iquestion,
@@ -35,13 +37,14 @@ function Question({question, setQuestions}: props) {
             const newQuestions = [...prevQuestions];
             const questionIndex = findQuestion(questionId, newQuestions);
             newQuestions[questionIndex].type = newType;
+            newQuestions[questionIndex].contentQuestion.forEach(alternative => alternative.checked = false);
 
             return newQuestions;
         })
     }
     
     return (
-       <div>
+       <div className={style.question}>
             <input 
                 type='text' 
                 value={question.enunciation}
@@ -54,7 +57,9 @@ function Question({question, setQuestions}: props) {
                 <option value="radio">Múltipla escolha</option>
                 <option value="checkbox">Caixa de seleção</option>
             </select>
-
+            {
+                
+            }
             <AlternativeList
                 alternatives={question.contentQuestion}
                 questionType={question.type}

@@ -4,6 +4,7 @@ import { Iquestion } from '../../types/question';
 import Question from '../Question';
 import { v4 as uuid4 } from 'uuid';
 import PlusButton from '../PlusButton';
+import style from './QuestionList.module.scss';
 
 interface props {
     questions: Iquestion[],
@@ -84,22 +85,32 @@ function QuestionList({questions, setQuestions}: props) {
     }
 
     return (
-        <div>
+        <div className={style.question_container}>
             <DragDropContext onDragEnd={handleDragAndDrop}>
-                <Droppable droppableId='ROOT' type='group'>
+                <Droppable
+                    droppableId='ROOT' 
+                    type='group'
+                >
                     {(provided) => (
-                        <div {...provided.droppableProps} ref={provided.innerRef}>
+                        <div 
+                            {...provided.droppableProps} 
+                            ref={provided.innerRef}
+                            className={style.questionList}
+                        >
                             {questions.map((question, index) => (
+                                
                                 <Draggable
                                     draggableId={question.id}
                                     index={index}
                                     key={question.id}
+                                    
                                 >
                                     {(provided) => (
                                         <div
                                             {...provided.dragHandleProps}
                                             {...provided.draggableProps}
                                             ref={provided.innerRef}
+                                            key={question.id}
                                         >
                                             <Question
                                                 question={question}

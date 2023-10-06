@@ -85,7 +85,7 @@ function QuestionList({questions, setQuestions}: props) {
     }
 
     return (
-        <div>
+        <div className={style.questionsWrapper}>
             <DragDropContext onDragEnd={handleDragAndDrop}>
                 <Droppable
                     droppableId='ROOT' 

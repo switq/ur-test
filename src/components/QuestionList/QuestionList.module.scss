@@ -2,11 +2,12 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
+    width: 100%;
 }
 
 .addQuestion {
     height: 20px;
-    width: auto;
+    width: 100%;
     background-image: url(./../../assets/img/add-to-queue-svgrepo-com.svg);
     background-repeat: no-repeat;
     background-size: contain;
@@ -15,4 +16,9 @@
     border: dotted 1px var(--gray003);
     padding: 0.5em;
     border-radius: 0.2em;
+
+}
+
+.questionWrapper {
+    max-width: 25em;
 }

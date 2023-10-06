@@ -67,10 +67,12 @@ function AlternativeList({alternatives, questionType, questionId, setQuestions}:
                                 
                             ))}
                             {provided.placeholder}
+                            <span className={style.addAlternative} onClick={addAlternative}></span>
                         </div>
                     )}
-            </Droppable> 
-            <PlusButton onClick={addAlternative}/>
+            </Droppable>
+            
+            <span></span>
         </div>
     )
 }

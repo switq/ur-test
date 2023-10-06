@@ -3,3 +3,16 @@
     flex-direction: column;
     gap: 0.3em;
 }
+
+.addAlternative {
+    height: 16px;
+    width: auto;
+    background-image: url(./../../assets/img/add-svgrepo-com.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+    border: dotted 1px var(--gray003);
+    padding: 0.5em;
+    border-radius: 1em;
+}

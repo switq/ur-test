@@ -3,3 +3,13 @@
     flex-direction: column;
     gap: 1em;
 }
+
+.addQuestion {
+    height: 16px;
+    width: 16px;
+    background-image: url(./../../assets/img/delete-svgrepo-com.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}

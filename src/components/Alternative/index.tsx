@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef, useLayoutEffect } from "react";
 import { Ialternative } from "../../types/alternative";
 import style from './Alternative.module.scss'
 import { Iquestion } from "../../types/question";
 import { findQuestionAlternativeIndex } from "../common/utils/locateFunctions";
+import { textAreaDynamicHeigth } from "../common/utils/interfaceInteractions";
 
 interface props {
     alternative: Ialternative,
@@ -12,6 +13,11 @@ interface props {
 }
 
 function Alternative({alternative, questionType, questionId, setQuestions}: props) {
+    const textAreaRef = useRef() as React.MutableRefObject<HTMLTextAreaElement>;
+    
+    useLayoutEffect(() => {
+        textAreaDynamicHeigth(textAreaRef.current);
+    })
 
     return (
         <div className={style.alternative}>
@@ -22,24 +28,25 @@ function Alternative({alternative, questionType, questionId, setQuestions}: prop
                 onClick={e => checkAlternative(alternative.id, questionType, questionId)}
                 readOnly
             />
-            <textarea 
+            <textarea
                 value={alternative.name}
                 onChange={e => {
                     editAlternative(alternative.id, questionId, e.target.value);
-                    textAreaDynamicHeigth(e.target)
+                    textAreaDynamicHeigth(e.target);
                 }}
                 wrap="soft"
                 placeholder="Adicionar opção"
                 className={style.textBox}
+                ref={textAreaRef}
             />
-            <button onClick={e => deleteAlternative(alternative.id, questionId)}>X</button>
+            <span 
+                onClick={e => deleteAlternative(alternative.id, questionId)}
+                className={style.close}
+            >
+                
+            </span>
         </div>
     )
-
-    function textAreaDynamicHeigth(element: HTMLTextAreaElement) {
-        element.style.height = "16px";
-        element.style.height = element.scrollHeight + "px";
-    }
     
     function editAlternative(alternativeId: string, questionId: string, newAlternativeName: string) {
         setQuestions(prevQuestions => {

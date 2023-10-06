@@ -30,3 +30,13 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.close {
+    height: auto;
+    width: 16px;
+    background-image: url(./../../assets/img/close-svgrepo-com.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}

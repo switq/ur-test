@@ -3,6 +3,7 @@ import { Iquestion } from '../../types/question';
 import AlternativeList from '../AlternativeList';
 import { findQuestion } from '../common/utils/locateFunctions';
 import style from './Question.module.scss';
+import { textAreaDynamicHeigth } from '../common/utils/interfaceInteractions';
 
 
 interface props {
@@ -45,11 +46,15 @@ function Question({question, setQuestions}: props) {
     
     return (
        <div className={style.question}>
-            <div>
-                <input 
-                    type='text' 
+            <div className={style.topWrapper}>
+                <textarea 
                     value={question.enunciation}
-                    onChange={e => editEnunciation(question.id, e.target.value)}
+                    onChange={e => {
+                        editEnunciation(question.id, e.target.value)
+                        textAreaDynamicHeigth(e.target);
+                    }}
+                    placeholder='Digite a questão'
+                    className={style.textBox}
                 />
 
                 <select 
@@ -66,7 +71,8 @@ function Question({question, setQuestions}: props) {
                 questionId={question.id}
                 setQuestions={setQuestions}
             />
-            <button onClick={e => deleteQuestion(question.id)}>x</button>
+            <span onClick={e => deleteQuestion(question.id)} className={style.delete}></span>
+
        </div> 
     )
 }

@@ -1,6 +1,13 @@
-# Getting Started with Create React App
+# Your Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+• Your Test é uma ferramenta online cujo objetivo é auxiliar professores na criação de provas tanto online quanto físicas. 
+
+• Está sendo desenvolvida com o auxílio do feedbacks de professores da FATEC-SP, para garantir sua utilidade ao público alvo.
+
+• Tecnologias: React TS, HTML5, CSS3, SASS, TypeScript Figma.
+
+[Project Link](https://ur-test.vercel.app)
+
 
 ## Available Scripts
 

@@ -1,16 +1,12 @@
 @import url(../common/colors/palete.scss);
 
 .question {
-
     width: 100%;
-    background-color: var(--gray001);
-    padding: 0.5em;
-    border-radius: 0.2em;
     width: 24em;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
-    
+    padding: 0.5em;
 }
 
 .topWrapper {
@@ -46,4 +42,35 @@
     background-position: center;
     cursor: pointer;
     align-self: flex-end;
+}
+
+.drag {
+    height: 112;
+    width: 16px;
+    background-image: url(./../../assets/img/drag-handle-vertical-svgrepo-com.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    cursor: grab;
+    border-radius: 1em;
+    background-color: var(--gray002);
+    // margin: -0.2em 0;
+    border-radius: 0.5em 0em 0em 0.5em;
+}
+
+.questionWrapper {
+    background-color: var(--gray001);
+    display: flex;
+    // padding-right: 0.5em;
+    padding-left: 0em;
+    border-radius: 0.5em;
+}
+
+.select {
+    border-radius: 1em;
+    padding: 0 0.3em;
+}
+
+.select:focus {
+    outline: none;
 }

@@ -121,15 +121,11 @@ function QuestionList({questions, setQuestions}: props) {
                                 </Draggable>
                             ))}
                             {provided.placeholder}
+                            <button onClick={addQuestion} className={style.addQuestion}></button>
                         </div>
                     )}
                 </Droppable>
             </DragDropContext> 
-        <button
-            onClick={addQuestion}
-        >
-            Add Question
-            </button>
         </div>
         
     )

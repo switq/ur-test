@@ -45,35 +45,40 @@ function Question({question, setQuestions}: props) {
     }
     
     return (
-       <div className={style.question}>
-            <div className={style.topWrapper}>
-                <textarea 
-                    value={question.enunciation}
-                    onChange={e => {
-                        editEnunciation(question.id, e.target.value)
-                        textAreaDynamicHeigth(e.target);
-                    }}
-                    placeholder='Digite a questão'
-                    className={style.textBox}
+        <div className={style.questionWrapper}>
+            <span className={style.drag}></span>
+            <div className={style.question}>
+                <div className={style.topWrapper}>
+                    <textarea 
+                        value={question.enunciation}
+                        onChange={e => {
+                            editEnunciation(question.id, e.target.value)
+                            textAreaDynamicHeigth(e.target);
+                        }}
+                        placeholder='Digite a questão'
+                        className={style.textBox}
+                    />
+
+                    <select 
+                        onChange={e => editType(question.id, e.target.value)}
+                        className={style.select}
+                    >
+                        <option value="radio">Múltipla escolha</option>
+                        <option value="checkbox">Caixa de seleção</option>
+                    </select>
+
+                </div>
+
+                <AlternativeList
+                    alternatives={question.contentQuestion}
+                    questionType={question.type}
+                    questionId={question.id}
+                    setQuestions={setQuestions}
                 />
-
-                <select 
-                    onChange={e => editType(question.id, e.target.value)}
-                >
-                    <option value="radio">Múltipla escolha</option>
-                    <option value="checkbox">Caixa de seleção</option>
-                </select>
-            </div>
-
-            <AlternativeList
-                alternatives={question.contentQuestion}
-                questionType={question.type}
-                questionId={question.id}
-                setQuestions={setQuestions}
-            />
-            <span onClick={e => deleteQuestion(question.id)} className={style.delete}></span>
-
-       </div> 
+                <span onClick={e => deleteQuestion(question.id)} className={style.delete}></span>
+            </div> 
+        </div>
+        
     )
 }
 

@@ -5,11 +5,14 @@
 }
 
 .addQuestion {
-    height: 16px;
-    width: 16px;
-    background-image: url(./../../assets/img/delete-svgrepo-com.svg);
+    height: 20px;
+    width: auto;
+    background-image: url(./../../assets/img/add-to-queue-svgrepo-com.svg);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     cursor: pointer;
+    border: dotted 1px var(--gray003);
+    padding: 0.5em;
+    border-radius: 0.2em;
 }

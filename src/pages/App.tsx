@@ -3,6 +3,7 @@ import { Iquestion } from '../types/question';
 import { v4 as uuid4 } from 'uuid';
 import QuestionList from '../components/QuestionList';
 import style from './App.module.scss';
+import Footer from '../components/Footer';
 
 
 
@@ -47,6 +48,7 @@ function App() {
         questions={questions}
         setQuestions={setQuestions}
       />
+      <Footer/>
     </div>
   )
 }

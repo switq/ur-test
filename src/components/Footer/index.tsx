@@ -11,11 +11,12 @@ function Footer() {
 
     return (
         <footer className={style.footerWrapper}>
-            <p>Copyright <AiOutlineCopyrightCircle/> {anoAtual()} Guilherme Rodrigues. All rights reserved.</p>
+            <p>© {anoAtual()} Guilherme Rodrigues. All rights reserved.</p>
             <ul className={style.socialLinks}>
-                <li><a href=""><AiFillGithub/></a></li>
-                <li><a href=""><AiFillLinkedin/></a></li>
-                <li><a href=""><BsDiscord/></a></li>
+                <li><a href="https://github.com/switq/ur-test" target="_blank" className={`${style.link} ${style.repo}`}>Repositório</a></li>
+                <li><a href="https://github.com/switq/" target="_blank" className={style.link}><AiFillGithub/></a></li>
+                <li><a href="https://www.linkedin.com/in/guirodri/" target="_blank" className={style.link}><AiFillLinkedin/></a></li>
+                {/* <li><a href="" className={style.link}><BsDiscord/></a></li> */}
             </ul>
         </footer>
     )

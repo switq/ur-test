@@ -1,9 +1,30 @@
+@import url(../common/colors/palete.scss);
+
 .footerWrapper {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     width: 100%;
+    background-color: var(--gray001);
+    // height: 5rem;
+    padding: 3rem 3.5rem;
 }
 
 .socialLinks {
+    font-size: 1.5em;
     display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.link {
+    color: var(--gray004);
+    text-decoration: none;
+}
+
+.repo {
+    font-size: .8em; 
+}
+
+.repo:hover {
+    text-decoration: underline;
 }

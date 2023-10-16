@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 1em;
     width: 100%;
+    min-height: 84vh;
 }
 
 .addQuestion {
@@ -17,8 +18,4 @@
     padding: 0.5em;
     border-radius: 0.2em;
 
-}
-
-.questionWrapper {
-    max-width: 25em;
 }
